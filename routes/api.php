@@ -23,6 +23,8 @@ Route::get('/dishes', [DishController::class, 'index'])->name('index');
 Route::get('/dishes/{id}', [DishController::class, 'show'])->name('showDish');
 Route::post('/dishes', [DishController::class, 'store'])->name('storeDish');
 Route::put('/dishes/{id}', [DishController::class, 'update'])->name('updateDish');
+Route::delete('/dishes/{id}', [DishController::class, 'destroy'])->name('deleteDish');
+
 
 
 //Route::resource('dishes, DishController::class); para que te haga las rutas automaticas, puede hacer de mas.

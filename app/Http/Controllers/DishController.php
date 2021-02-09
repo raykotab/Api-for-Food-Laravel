@@ -66,8 +66,10 @@ class DishController extends Controller
      * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dish $dish)
+    public function destroy($id)
     {
-        //
+        $dish = Dish::find($id);
+        $dish->delete();
+        
     }
 }
