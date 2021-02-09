@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DishController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('Dishes', [DishController::class, 'index'])->;
+Route::get('/dishes', [DishController::class, 'index'])->name('index');
+Route::get('/dishes/{id}', [DishController::class, 'show'])->name('showDish');
+Route::post('/dishes', [DishController::class, 'store'])->name('storeDish');
+Route::put('/dishes/{id}', [DishController::class, 'update'])->name('updateDish');
+
+
+//Route::resource('dishes, DishController::class); para que te haga las rutas automaticas, puede hacer de mas.

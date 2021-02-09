@@ -17,15 +17,6 @@ class DishController extends Controller
         return Dish::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -33,9 +24,11 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $dish = Dish::create($request->all());
+        return response()->json($dish, 201);
     }
 
     /**
@@ -44,20 +37,10 @@ class DishController extends Controller
      * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function show(Dish $dish)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Dish  $dish
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Dish $dish)
-    {
-        //
+    public function show($id)
+    {   
+        $dish = Dish::find($id);
+        return $dish;
     }
 
     /**
@@ -67,9 +50,14 @@ class DishController extends Controller
      * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dish $dish)
+    public function update(Request $request, $id)
     {
-        //
+        $dish = Dish::find($id);
+        $dish->name = $request->name;
+        $dish->image = $request->image;
+        $dish->description = $request->description;
+        $dish->save();
+        return response()->json($dish, 201);
     }
 
     /**
